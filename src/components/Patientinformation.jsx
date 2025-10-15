@@ -24,7 +24,7 @@ const Patient = () => {
 
       <div
         className="m-auto d-flex flex-column px-4 pb-4 pt-2 justify-center  shadow rounded bg-softgray"
-        style={{ width: "832px", height: "572px" }}
+        style={{ width: "830px", height: "fit-content" }}
       >
         <p
           className="text-center text-gray fw-medium"
