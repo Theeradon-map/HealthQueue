@@ -1,6 +1,6 @@
 import { Form } from "react-bootstrap";
 
-const Patient = () => {
+const Patientinformation = () => {
   return (
     <>
       <div
@@ -147,4 +147,4 @@ const Patient = () => {
   );
 };
 
-export default Patient;
+export default Patientinformation;
