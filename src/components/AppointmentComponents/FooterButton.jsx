@@ -1,0 +1,99 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+
+const isStay = (v) => !v || v === "stay";
+
+const FooterButton = ({
+  gotoLocation = "",
+  backtoLocation = "",
+  onNextClick,
+  onBackClick,
+  disableNext = false,
+  disableBack = false,
+}) => {
+  return (
+    <div className="d-flex flex justify-content-between mt-5">
+      {isStay(backtoLocation) ? (
+        <Button
+          className="d-flex align-items-center justify-content-center border-0 shadow-sm"
+          style={{
+            width: "125px",
+            height: "57px",
+            color: "#002D73",
+            backgroundColor: "#FFFFFF",
+            borderRadius: "5px",
+            padding: "10px",
+            fontSize: "18px",
+            gap: "10px",
+          }}
+          onClick={onBackClick}
+          disabled={disableBack}
+        >
+          <i className="bi bi-chevron-left" />
+          เริ่มใหม่
+        </Button>
+      ) : (
+        <Button
+          as={Link}
+          to={`/${backtoLocation}`}
+          className="d-flex align-items-center justify-content-center border-0 shadow-sm"
+          style={{
+            width: "125px",
+            height: "57px",
+            color: "#002D73",
+            backgroundColor: "#FFFFFF",
+            borderRadius: "5px",
+            padding: "10px",
+            fontSize: "18px",
+            gap: "10px",
+          }}
+        >
+          <i className="bi bi-chevron-left" />
+          เริ่มใหม่
+        </Button>
+      )}
+
+      {isStay(gotoLocation) ? (
+        <Button
+          className="d-flex align-items-center justify-content-center border-0 shadow-sm"
+          style={{
+            width: "125px",
+            height: "57px",
+            color: "#ffffff",
+            background: "#002D73",
+            borderRadius: "5px",
+            padding: "10px",
+            fontSize: "18px",
+            gap: "10px",
+          }}
+          onClick={onNextClick}
+          disabled={disableNext}
+        >
+          <i className="bi bi-chevron-right" />
+          ต่อไป
+        </Button>
+      ) : (
+        <Button
+          as={Link}
+          to={`/${gotoLocation}`}
+          className="d-flex align-items-center justify-content-center border-0 shadow-sm"
+          style={{
+            width: "125px",
+            height: "57px",
+            color: "#ffffff",
+            background: "#002D73",
+            borderRadius: "5px",
+            padding: "10px",
+            fontSize: "18px",
+            gap: "10px",
+          }}
+        >
+          <i className="bi bi-chevron-right" />
+          ต่อไป
+        </Button>
+      )}
+    </div>
+  );
+};
+export default FooterButton;
