@@ -1,4 +1,13 @@
+import React, { useContext, useEffect } from "react";
+import { DataContext } from "../Context/DataContext";
+import DoctorCard from "./AppointmentComponents/DoctorCard";
+
 const Doctor = () => {
+  const { doctors } = useContext(DataContext);
+  useEffect(() => {
+    console.log("doctors data updated:", doctors);
+  }, []);
+
   return (
     <div className="container">
       <h1 className="text-navy mt-3">ค้นหาเเพทย์</h1>
@@ -18,26 +27,10 @@ const Doctor = () => {
           ความชำนาญแพทย์
         </h3>
       </div>
-
-      <div className="card mt-2 shadow" style={{ width: "280px" }}>
-        <div className="card-body shadow" style={{ height: "250px" }}></div>
-
-        <div className="bg-navy text-white p-3">
-          <div className="text-center mb-3">
-            <h5 className="mb-0">นพ. หงสาวดี แซ่ลี</h5>
-            <small>รักษาอาการทางใจ</small>
-          </div>
-
-          <div className="d-flex gap-2 justify-content-center">
-            <button className="btn btn-lg bg-white text-dark w-50 fs-6">
-              นัดหมาย
-            </button>
-
-            <button className="btn btn-lg bg-white text-dark w-50 fs-6">
-              รายละเอียด
-            </button>
-          </div>
-        </div>
+      <div className="d-flex gap-4 flex-wrap justify-content-center">
+        {doctors.map((doctor) => (
+          <DoctorCard key={doctor.id} doctor={doctor} />
+        ))}
       </div>
     </div>
   );
