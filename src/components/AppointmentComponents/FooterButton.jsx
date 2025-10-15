@@ -13,7 +13,10 @@ const FooterButton = ({
   disableBack = false,
 }) => {
   return (
-    <div className="d-flex flex justify-content-between mt-5">
+    <div
+      className="d-flex flex justify-content-between mb-0 position-absolute"
+      style={{ width: "800px", bottom: "15px", padding: "0 0" }}
+    >
       {isStay(backtoLocation) ? (
         <Button
           className="d-flex align-items-center justify-content-center border-0 shadow-sm"

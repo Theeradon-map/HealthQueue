@@ -1,6 +1,6 @@
 const AppointmentHeader = () => {
   return (
-    <div className="text-center justify-center  align-items-center mb-4 pb-4 mt-3">
+    <div className="text-center justify-center  align-items-center mb-2 pb-4 mt-3">
       <h1 className="m-auto text-navy">จองคิวตรวจ</h1>
       <div
         className="align-content-center m-auto"
