@@ -25,10 +25,7 @@ const Appointment = () => {
         style={{ marginRight: "11rem" }}
       >
         <Stepper Step={1} />
-        <div
-          className="ms-4 d-flex flex-column p-4 justify-center  shadow rounded bg-softgray"
-          style={{ maxWidth: "850px", maxHeight: "fit-content" }}
-        >
+        <div className="AppointmentBackground">
           <RadioChoice
             label={"เลือกโรงพยาบาล"}
             name={"hospital"}
@@ -43,7 +40,10 @@ const Appointment = () => {
               onChange={setdoctorOption}
             />
           </div>
-          <FooterButton gotoLocation={"doctor"} backtoLocation="appointment" />
+          <FooterButton
+            gotoLocation={"calendar"}
+            backtoLocation="appointment"
+          />
         </div>
       </div>
     </>

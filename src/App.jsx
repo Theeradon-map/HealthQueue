@@ -8,6 +8,7 @@ import Doctor from "./components/Doctor";
 import Appointment from "./components/appointment";
 import NavigateBar from "./components/NavigateBar";
 import AppointmentTime from "./components/AppointmentTime";
+import PatientInformation from "./components/PatientInformation";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/calendar" element={<AppointmentTime />} />
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/doctor" element={<Doctor />} />
+          <Route path="/patientinfo" element={<PatientInformation />} />
         </Routes>
       </Router>
     </DataProvider>

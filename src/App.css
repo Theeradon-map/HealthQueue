@@ -26,7 +26,7 @@
   background-color: #002d73 !important;
 }
 .text-gray {
-  color: #4B4949;
+  color: #4b4949;
 }
 .bg-softgray {
   background-color: #eeeeee;
@@ -73,6 +73,49 @@
   gap: 30px;
   display: flex;
   align-items: center;
-  border: 1px solid #dee2e6; /* Bootstrap border color */
+  border: 1px solid #dee2e6;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+.radio-btn:hover {
+  border-color: #a0acc4;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  transform: translateY(-2px);
+}
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+a[role="button"]:hover {
+  text-decoration: none;
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.react-datepicker__input-container input {
+  text-align: center;
+}
+
+.AppointmentBackground {
+  margin-left: 1.5rem;
+  flex-direction: column;
+  padding: 1.5rem;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #eeeeee;
+  position: relative;
+  width: 850px;
+  height: 550px;
+}
+
+/* ms-4 d-flex flex-column p-4 justify-center  shadow rounded bg-softgray position-relative */
