@@ -35,6 +35,8 @@ const Appointment = () => {
         </div>
       </div>
       <FooterButton
+        labelNext={"ต่อไป"}
+        labelBack={"เริ่มใหม่"}
         gotoLocation={"appointmenttime"}
         backtoLocation="/"
       />

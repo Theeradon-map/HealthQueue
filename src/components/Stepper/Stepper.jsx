@@ -24,14 +24,21 @@ const Stepper = ({ Step }) => {
         const isAnimating = step.id === animatedStep;
 
         return (
-          <div key={step.id} className={`step-wrapper ${isAnimating ? "animating" : ""}`}>
+          <div
+            key={step.id}
+            className={`step-wrapper ${isAnimating ? "animating" : ""}`}
+          >
             <div
-              className={`step-circle ${isCompleted ? "completed" : ""} ${isActive ? "active" : ""} ${isAnimating ? "pulsing" : ""}`}
+              className={`step-circle ${isCompleted ? "completed" : ""} ${
+                isActive ? "active" : ""
+              } ${isAnimating ? "pulsing" : ""}`}
             >
               {step.id}
             </div>
 
-            <div className="step-label">{step.label}</div>
+            <div className={`step-label ${isCompleted ? "completed" : ""} ${isActive ? "active" : ""}`}>
+              {step.label}
+            </div>
 
             {index !== steps.length - 1 && (
               <div

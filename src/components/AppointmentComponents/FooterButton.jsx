@@ -11,6 +11,8 @@ const FooterButton = ({
   onBackClick,
   disableNext = false,
   disableBack = false,
+  labelNext = "",
+  labelBack = "",
 }) => {
   return (
     <div className="d-flex justify-content-center">
@@ -20,7 +22,7 @@ const FooterButton = ({
       >
         {isStay(backtoLocation) ? (
           <Button
-            className="d-flex align-items-center justify-content-center border-0 shadow-sm"
+            className="d-flex align-items-center justify-content-center shadow-lg"
             style={{
               width: "125px",
               height: "57px",
@@ -35,7 +37,7 @@ const FooterButton = ({
             disabled={disableBack}
           >
             <i className="bi bi-chevron-left" />
-            เริ่มใหม่
+            {labelBack}
           </Button>
         ) : (
           <Button
@@ -54,7 +56,7 @@ const FooterButton = ({
             }}
           >
             <i className="bi bi-chevron-left" />
-            เริ่มใหม่
+            {labelBack}
           </Button>
         )}
 
@@ -75,7 +77,7 @@ const FooterButton = ({
             disabled={disableNext}
           >
             <i className="bi bi-chevron-right" />
-            ต่อไป
+            {labelNext}
           </Button>
         ) : (
           <Button
@@ -94,7 +96,7 @@ const FooterButton = ({
             }}
           >
             <i className="bi bi-chevron-right" />
-            ต่อไป
+            {labelNext}
           </Button>
         )}
       </div>

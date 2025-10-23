@@ -63,7 +63,7 @@ const AppointmentTime = () => {
           <Schedule schedule={schedule} />
         </div>
       </div>
-      <FooterButton gotoLocation={"patientinfo"} backtoLocation="appointment" />
+      <FooterButton labelBack={"กลับ"} labelNext={"ต่อไป"} gotoLocation={"patientinfo"} backtoLocation="appointment" />
     </>
   );
 };
