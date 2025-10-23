@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
-import Stepper from "./Stepper/Stepper";
-import AppointmentHeader from "./AppointmentComponents/AppointmentHeader";
-import FooterButton from "./AppointmentComponents/FooterButton";
-import RadioChoice from "./AppointmentComponents/RadioChoice";
+import AppointmentHeader from "../../components/AppointmentComponents/AppointmentHeader";
+import FooterButton from "../../components/AppointmentComponents/FooterButton";
+import RadioChoice from "../../components/AppointmentComponents/RadioChoice";
+import Stepper from "../../components/Stepper/Stepper";
 
 const Appointment = () => {
   const [hospitalOption, sethospitalOption] = useState("");
   const [doctorOption, setdoctorOption] = useState("");
-
-  useEffect(() => {
-    console.log("hospital : ", hospitalOption);
-  }, [hospitalOption]);
-
-  useEffect(() => {
-    console.log("doctor : ", doctorOption);
-  }, [doctorOption]);
 
   return (
     <>
@@ -40,12 +32,12 @@ const Appointment = () => {
               onChange={setdoctorOption}
             />
           </div>
-          <FooterButton
-            gotoLocation={"calendar"}
-            backtoLocation="appointment"
-          />
         </div>
       </div>
+      <FooterButton
+        gotoLocation={"appointmenttime"}
+        backtoLocation="/"
+      />
     </>
   );
 };

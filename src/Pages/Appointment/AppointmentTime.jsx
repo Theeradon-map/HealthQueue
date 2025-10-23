@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import Stepper from "./Stepper/Stepper";
+import Stepper from "../../components/Stepper/Stepper";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import th from "date-fns/locale/th";
-import FooterButton from "./AppointmentComponents/FooterButton";
-import AppointmentHeader from "./AppointmentComponents/AppointmentHeader";
-import Schedule from "./AppointmentComponents/Scheudule";
+import FooterButton from "../../components/AppointmentComponents/FooterButton";
+import AppointmentHeader from "../../components/AppointmentComponents/AppointmentHeader";
+import Schedule from "../../components/AppointmentComponents/Scheudule";
 registerLocale("th", th);
 
 const AppointmentTime = () => {
@@ -41,7 +41,7 @@ const AppointmentTime = () => {
         style={{ marginRight: "11rem" }}
       >
         {" "}
-        <Stepper Step={3} />
+        <Stepper Step={2} />
         <div className="AppointmentBackground">
           <div className="text-center" style={{ lineHeight: "10px" }}>
             <h2>นัดหมายแพทย์</h2>
@@ -60,14 +60,10 @@ const AppointmentTime = () => {
             </div>
           </div>
 
-            <Schedule schedule={schedule} />
-
-          <FooterButton
-            gotoLocation={"patientinfo"}
-            backtoLocation="appointment"
-          />
+          <Schedule schedule={schedule} />
         </div>
       </div>
+      <FooterButton gotoLocation={"patientinfo"} backtoLocation="appointment" />
     </>
   );
 };
