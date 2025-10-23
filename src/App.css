@@ -26,7 +26,7 @@
   background-color: #002d73 !important;
 }
 .text-gray {
-  color: #4b4949;
+  color: #4b4949!important;
 }
 .bg-softgray {
   background-color: #eeeeee;
@@ -114,8 +114,8 @@ button:hover {
   border-radius: 10px;
   background-color: #eeeeee;
   position: relative;
-  width: 850px;
-  height: 550px;
+  width: 850px!important;
+  height: fit-content;
 }
 
 /* ms-4 d-flex flex-column p-4 justify-center  shadow rounded bg-softgray position-relative */

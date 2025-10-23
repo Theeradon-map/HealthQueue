@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { DataContext } from "../../Context/DataContext";
+import SampleDoctor from "../../assets/Doctors/Sample.jpg";
 
 const DoctorCard = ({ doctor }) => {
   const { specialties = [] } = useContext(DataContext) || {};
@@ -12,8 +13,7 @@ const DoctorCard = ({ doctor }) => {
       key={doctor.doctor_id}
       style={{ width: "280px" }}
     >
-      <div className="card-body" style={{ height: "250px" }} />
-
+      <img src={SampleDoctor} alt="" style={{ height: "250px", objectFit: "cover" }} />
       <div className="bg-navy text-white p-3">
         <div className="text-center mb-3">
           <h5 className="mb-0">{doctor.doctor_name}</h5>

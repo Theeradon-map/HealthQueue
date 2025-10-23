@@ -1,7 +1,7 @@
 import { Form } from "react-bootstrap";
-import FooterButton from "./AppointmentComponents/FooterButton";
-import AppointmentHeader from "./AppointmentComponents/AppointmentHeader";
-import Stepper from "./Stepper/Stepper";
+import FooterButton from "../../components/AppointmentComponents/FooterButton";
+import AppointmentHeader from "../../components/AppointmentComponents/AppointmentHeader";
+import Stepper from "../../components/Stepper/Stepper";
 
 const PatientInformation = () => {
   return (
@@ -11,8 +11,11 @@ const PatientInformation = () => {
         className="d-flex justify-content-center"
         style={{ marginRight: "11rem" }}
       >
-        <Stepper Step={4} />
-        <div className="AppointmentBackground">
+        <Stepper Step={3} />
+        <div
+          className="AppointmentBackground"
+          style={{ marginBottom: "1.5rem" }}
+        >
           <p
             className="text-center text-gray fw-medium"
             style={{ fontSize: "24px" }}
@@ -90,15 +93,16 @@ const PatientInformation = () => {
                 <textarea
                   className="form-control"
                   rows="5"
-                  style={{ resize: "none" }}
                 ></textarea>
               </div>
             </div>
           </div>
-
-          <FooterButton gotoLocation={"stay"} backtoLocation="calendar" />
         </div>
       </div>
+      <FooterButton
+        gotoLocation={"appointmentinfo"}
+        backtoLocation={"appointmenttime"}
+      />
     </>
   );
 };

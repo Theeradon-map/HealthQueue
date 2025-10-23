@@ -1,12 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import { DataContext } from "../Context/DataContext";
-import DoctorCard from "./AppointmentComponents/DoctorCard";
+import { DataContext } from "../../Context/DataContext";
+import DoctorCard from "../../components/AppointmentComponents/DoctorCard";
 
 const Doctor = () => {
   const { doctors } = useContext(DataContext);
-  useEffect(() => {
-    console.log("doctors data updated:", doctors);
-  }, []);
+
+
 
   return (
     <div className="container">

@@ -9,6 +9,12 @@ function NavigateBar() {
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand href="#home" className="text-navy fw-bold">
+          <img
+            src="./Pond.jpg"
+            alt="Logo"
+            style={{ width: "40px", height: "40px" }}
+          />
+          &nbsp;
           HONGSAWADEE
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
