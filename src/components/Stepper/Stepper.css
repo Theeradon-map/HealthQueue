@@ -102,3 +102,16 @@
 .step-line.completed-line::after {
   height: 100%;
 }
+
+.step-label {
+  margin-left: 12px;
+  color: #4b4949;
+  font-weight: 500;
+}
+
+
+.step-label.active, .step-label.completed {
+  margin-left: 12px;
+  color: #002d73;
+  font-weight: 500;
+}

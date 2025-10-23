@@ -117,7 +117,7 @@ const AppointmentInfomation = () => {
           </div>
         </div>
       </div>
-      <FooterButton backtoLocation="patientinfo" gotoLocation="appointment" />
+      <FooterButton labelBack={"กลับ"} labelNext={"ต่อไป"} backtoLocation="patientinfo" gotoLocation="appointment" />
     </>
   );
 };

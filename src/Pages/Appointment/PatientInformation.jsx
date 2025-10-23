@@ -100,6 +100,8 @@ const PatientInformation = () => {
         </div>
       </div>
       <FooterButton
+        labelBack={"กลับ"}
+        labelNext={"ต่อไป"}
         gotoLocation={"appointmentinfo"}
         backtoLocation={"appointmenttime"}
       />

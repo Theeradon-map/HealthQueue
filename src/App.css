@@ -22,11 +22,18 @@
   transition: transform 0.25s ease-in-out, background-color 0.25s ease-in-out;
 }
 
+input:hover,
+textarea:hover,
+select:hover {
+  transform: scale(1.05);
+  transition: transform 0.25s ease-in-out;
+}
+
 .bg-navy {
   background-color: #002d73 !important;
 }
 .text-gray {
-  color: #4b4949!important;
+  color: #4b4949 !important;
 }
 .bg-softgray {
   background-color: #eeeeee;
@@ -114,7 +121,7 @@ button:hover {
   border-radius: 10px;
   background-color: #eeeeee;
   position: relative;
-  width: 850px!important;
+  width: 850px !important;
   height: fit-content;
 }
 
