@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext, use } from "react";
-import { Form, Modal, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataContext } from "../../Context/DataContext";
 import AppointmentHeader from "../../components/AppointmentComponents/AppointmentHeader";
@@ -52,6 +51,9 @@ const Appointment = () => {
             value={hospitalOption}
             onChange={sethospitalOption}
             selectedValue={selectedHospital}
+            onOptionClick={(val) => {
+              if (val === "self") setShowHospitalsModal(true);
+            }}
           />
           <div>
             <RadioChoice
@@ -60,6 +62,9 @@ const Appointment = () => {
               value={doctorOption}
               onChange={setdoctorOption}
               selectedValue={selectedSpecialty}
+              onOptionClick={(val) => {
+                if (val === "self") setShowSpecialtiesModal(true);
+              }}
             />
           </div>
         </div>

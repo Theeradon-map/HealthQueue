@@ -43,17 +43,19 @@ const AppointmentTime = () => {
         <Stepper Step={2} />
         <div className="AppointmentBackground">
           <div className="text-center" style={{ lineHeight: "10px" }}>
-            <h2>นัดหมายแพทย์</h2>
             <p className="text-navy fs-4">
               {doctor?.doctor_name || "เลือกแพทย์จากหน้าก่อนหน้า"}
             </p>
-            <div className="text-center">
+            <p className="text-navy fs-4">{doctor?.specialty_name || "..."}</p>
+            <hr className="m-auto w-50" />
+            <div className="text-center mt-2">
               <h5 className="">ทำนัดหมายแพทย์</h5>
               <DatePicker
                 selected={selectedDate ? new Date(selectedDate) : null}
                 onChange={(date) => {
                   setSelectedDate(date);
                 }}
+                year
                 dateFormat="d MMM yy"
                 locale="th"
                 className="form-control"

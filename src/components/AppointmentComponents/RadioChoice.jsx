@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import { Form } from "react-bootstrap";
 
 const RadioChoice = ({
@@ -11,28 +11,53 @@ const RadioChoice = ({
     { id: "-2", value: "auto", label: "ระบบเลือกให้โดยอัตโนมัติ" },
   ],
   selectedValue = null,
+  onOptionClick = () => {},
 }) => {
-
   return (
     <div>
       <p className="text-gray fw-bold">{label}</p>
-      <Form className="d-flex flex-row gap-5 pb-4">
-        {options.map((opt, idx) => (
-          <Form.Group className="radio-btn" key={opt.value + idx}>
-            <Form.Check.Input
-              type="radio"
-              id={`${name}-${idx}`}
-              name={name}
-              value={opt.value}
-              checked={value === opt.value}
-              onChange={(e) => onChange(e.target.value)}
-              style={{ width: "24px", height: "24px" }}
-            />
-            <Form.Check.Label htmlFor={`${name}-${idx}`} className="text-gray">
-              {opt.label}
-            </Form.Check.Label>
-          </Form.Group>
-        ))}
+      <Form
+        className="d-flex flex-row gap-5 pb-4"
+        role="radiogroup"
+        aria-label={label}
+      >
+        {options.map((opt, idx) => {
+          const id = `${name}-${idx}`;
+          const isChecked = value === opt.value;
+          return (
+            <Form.Group
+              className="radio-btn"
+              key={opt.value + idx}
+              role="radio"
+              aria-checked={isChecked}
+              tabIndex={0}
+              onClick={() => {
+                onOptionClick(opt.value);
+                if (!isChecked) onChange(opt.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onOptionClick(opt.value);
+                  if (!isChecked) onChange(opt.value);
+                }
+              }}
+            >
+              <Form.Check.Input
+                type="radio"
+                id={id}
+                name={name}
+                value={opt.value}
+                checked={isChecked}
+                onChange={(e) => onChange(e.target.value)}
+                style={{ width: "24px", height: "24px" }}
+              />
+              <Form.Check.Label htmlFor={id} className="text-gray">
+                {opt.label}
+              </Form.Check.Label>
+            </Form.Group>
+          );
+        })}
       </Form>
       <p className="text-primary fw-bold">
         {selectedValue ? `คุณเลือก : ${selectedValue}` : ""}
