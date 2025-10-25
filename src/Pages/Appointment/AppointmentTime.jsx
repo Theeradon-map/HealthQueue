@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import Stepper from "../../components/Stepper/Stepper";
 import DatePicker from "react-datepicker";
@@ -8,30 +9,29 @@ import th from "date-fns/locale/th";
 import FooterButton from "../../components/AppointmentComponents/FooterButton";
 import AppointmentHeader from "../../components/AppointmentComponents/AppointmentHeader";
 import Schedule from "../../components/AppointmentComponents/Scheudule";
+import { useData } from "../../Context/DataContext";
 registerLocale("th", th);
 
 const AppointmentTime = () => {
-  const [selectedTime, setSelectedTime] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedTime, setSelectedTime] = useState(null);
+  const location = useLocation();
+  const { doctor } = location.state || {};
+  const { doctorsSchedule } = useData();
 
-  const schedule = [
-    {
-      day: "อาทิตย์",
-      date: "5 ต.ค.",
-      times: ["9.00 - 12.00", "13.00 - 16.00"],
-    },
-    {
-      day: "จันทร์",
-      date: "6 ต.ค.",
-      times: ["10.00 - 12.00", "13.00 - 14.00"],
-    },
-    { day: "อังคาร", date: "7 ต.ค.", times: ["9.00 - 12.00"] },
-    { day: "พุธ", date: "8 ต.ค.", times: ["13.00 - 16.00"] },
-    {
-      day: "พฤหัสบดี",
-      date: "9 ต.ค.",
-      times: ["11.00 - 12.00", "13.00 - 15.00"],
-    },
-  ];
+  useEffect(() => {
+    console.log("Selected Date:", selectedDate);
+  }, [selectedDate]);
+
+  const doctorScheduleData = doctorsSchedule.find(
+    (schedule) => schedule.doctor_id === doctor?.doctor_id
+  );
+  const schedule = doctorScheduleData?.schedule || [];
+
+  useEffect(() => {
+    console.log("Selected Time:", selectedTime);
+    console.log("Picked date:", selectedDate);
+  }, [selectedTime, selectedDate]);
 
   return (
     <>
@@ -40,17 +40,20 @@ const AppointmentTime = () => {
         className="d-flex justify-content-center mb-5"
         style={{ marginRight: "11rem" }}
       >
-        {" "}
         <Stepper Step={2} />
         <div className="AppointmentBackground">
           <div className="text-center" style={{ lineHeight: "10px" }}>
             <h2>นัดหมายแพทย์</h2>
-            <p className="text-navy fs-4">นพ. หงสาวดี แซ่ลี</p>
+            <p className="text-navy fs-4">
+              {doctor?.doctor_name || "เลือกแพทย์จากหน้าก่อนหน้า"}
+            </p>
             <div className="text-center">
-              <h5 className="">วันที่ต้องการจองคิว</h5>
+              <h5 className="">ทำนัดหมายแพทย์</h5>
               <DatePicker
-                selected={selectedTime ? new Date(selectedTime) : null}
-                onChange={(date) => setSelectedTime(date)}
+                selected={selectedDate ? new Date(selectedDate) : null}
+                onChange={(date) => {
+                  setSelectedDate(date);
+                }}
                 dateFormat="d MMM yy"
                 locale="th"
                 className="form-control"
@@ -60,10 +63,20 @@ const AppointmentTime = () => {
             </div>
           </div>
 
-          <Schedule schedule={schedule} />
+          <Schedule
+            schedule={schedule}
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+            setSelectedTime={setSelectedTime}
+          />
         </div>
       </div>
-      <FooterButton labelBack={"กลับ"} labelNext={"ต่อไป"} gotoLocation={"patientinfo"} backtoLocation="appointment" />
+      <FooterButton
+        labelBack={"กลับ"}
+        labelNext={"ต่อไป"}
+        gotoLocation={"patientinfo"}
+        backtoLocation="appointment"
+      />
     </>
   );
 };

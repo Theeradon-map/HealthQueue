@@ -6,6 +6,14 @@
   padding: 0;
   box-sizing: border-box;
   letter-spacing: 1px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+a:hover {
+  text-decoration: none;
+  transform: scale(1.05);
+  transition: transform 0.25s ease-in-out;
 }
 
 .hover-primary:hover,
@@ -63,6 +71,15 @@ select:hover {
 [type="radio"]:checked {
   border: 6px solid #eef0f5;
   background-color: #002d73;
+}
+
+.radio-btn:has(input[type="radio"]:checked) {
+  background: linear-gradient(to bottom right, #002d73, #30639d);
+  color: #ffffff;
+}
+
+.radio-btn:has(input[type="radio"]:checked) .text-gray {
+  color: #ffffff !important;
 }
 
 [type="radio"]:hover {
@@ -124,5 +141,12 @@ button:hover {
   width: 850px !important;
   height: fit-content;
 }
+.doctor-filter-input:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(1);
+  transition: all 0.2s ease;
+}
 
-/* ms-4 d-flex flex-column p-4 justify-center  shadow rounded bg-softgray position-relative */
+.card-doctor {
+  background: linear-gradient(to bottom right, #002d73, #30639d);
+}
