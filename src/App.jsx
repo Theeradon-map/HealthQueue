@@ -10,6 +10,7 @@ import Appointment from "./Pages/Appointment/Appointment";
 import Doctor from "./Pages/Appointment/Doctor";
 import PatientInformation from "./Pages/Appointment/PatientInformation";
 import AppointmentInfomation from "./Pages/Appointment/AppointmentInfomation";
+import Doctorinfo from "./Pages/Home/Doctorinfo";
 
 function AppContent() {
   const { loading, error } = useData();
@@ -27,6 +28,7 @@ function AppContent() {
         <Route path="/doctor" element={<Doctor />} />
         <Route path="/patientinfo" element={<PatientInformation />} />
         <Route path="/appointmentinfo" element={<AppointmentInfomation />} />
+        <Route path="/doctorinfo" element={<Doctorinfo />} />
       </Routes>
     </>
   );
@@ -39,6 +41,7 @@ function App() {
         <AppContent />
       </Router>
     </DataProvider>
+   
   );
 }
 
