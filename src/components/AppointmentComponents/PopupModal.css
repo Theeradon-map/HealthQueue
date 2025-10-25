@@ -19,11 +19,40 @@
   padding-top: 2rem !important;
 }
 
-[role=dialog] {
+[role="dialog"] {
   overflow: clip;
 }
+
+
+
+.modal-backdrop.show {
+  opacity: 0.4;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal.fade .modal-dialog {
+  transform: scale(0.8);
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal.fade:not(.show) .modal-dialog {
+  transform: scale(0.9);
+  opacity: 0;
+}
+
 .btn-popupModal-color:hover {
-  color: #0162ff;
-  border: #0062ff solid 0.1px;
+  background-color: #b6d4fe;
+  color: rgb(0, 0, 0);
+  transform: scale(1.05);
   box-shadow: 0 5px 8px 0 #dae8ff;
+}
+
+.text-navy {
+  color: #002b5c;
 }

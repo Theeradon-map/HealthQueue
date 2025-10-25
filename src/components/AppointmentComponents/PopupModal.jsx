@@ -1,10 +1,18 @@
-import { Form, Modal, Button } from "react-bootstrap";
-import React, { useState, useEffect, useContext, use } from "react";
+import { Modal } from "react-bootstrap";
+import Fade from "react-bootstrap/Fade";
+import React, { useState, useContext } from "react";
 import "./PopupModal.css";
 
 import { DataContext } from "../../Context/DataContext";
 
-const PopupModal = ({ label, dataName, itemOption, onClose, show, onSelect }) => {
+const PopupModal = ({
+  label,
+  dataName,
+  itemOption,
+  onClose,
+  show,
+  onSelect,
+}) => {
   const { specialties, hospitals } = useContext(DataContext);
   const [selectedSpecialty, setSelectedSpecialty] = useState(null);
   const [selectedHospital, setSelectedHospital] = useState(null);

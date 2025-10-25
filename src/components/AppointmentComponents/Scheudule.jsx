@@ -66,7 +66,7 @@ const Schedule = ({
               return (
                 <div
                   key={t}
-                  className={`border rounded text-center py-1 my-1 ${
+                  className={`time-button border rounded text-center py-1 my-1 ${
                     selectedTime === uniqueTimeId
                       ? "bg-primary text-white"
                       : "bg-light"
