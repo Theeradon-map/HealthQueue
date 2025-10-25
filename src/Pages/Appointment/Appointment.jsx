@@ -1,15 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, use } from "react";
 import { Form, Modal, Button } from "react-bootstrap";
-
+import { useNavigate } from "react-router-dom";
+import { DataContext } from "../../Context/DataContext";
 import AppointmentHeader from "../../components/AppointmentComponents/AppointmentHeader";
 import FooterButton from "../../components/AppointmentComponents/FooterButton";
 import RadioChoice from "../../components/AppointmentComponents/RadioChoice";
 import Stepper from "../../components/Stepper/Stepper";
-
+import PopupModal from "../../components/AppointmentComponents/PopupModal";
 const Appointment = () => {
-  const [hospitalOption, sethospitalOption] = useState("");
-  const [doctorOption, setdoctorOption] = useState("");
-  const [show, setShow] = useState(true);
+  const navigate = useNavigate();
+  const [hospitalOption, sethospitalOption] = useState(null);
+  const [doctorOption, setdoctorOption] = useState(null);
+  const [showSpecialtiesModal, setShowSpecialtiesModal] = useState(false);
+  const [showHospitalsModal, setShowHospitalsModal] = useState(false);
+  const [selectedSpecialty, setSelectedSpecialty] = useState(null);
+  const [selectedHospital, setSelectedHospital] = useState(null);
+
+  const handleNextClick = () => {
+    navigate("/Doctor", {
+      state: {
+        selectedSpecialty,
+        selectedHospital,
+      },
+    });
+  };
+
+  useEffect(() => {
+    if (doctorOption === "self") {
+      setShowSpecialtiesModal(true);
+    }
+  }, [doctorOption]);
+
+  useEffect(() => {
+    if (hospitalOption === "self") {
+      setShowHospitalsModal(true);
+    }
+  }, [hospitalOption]);
 
   return (
     <>
@@ -25,6 +51,7 @@ const Appointment = () => {
             name={"hospital"}
             value={hospitalOption}
             onChange={sethospitalOption}
+            selectedValue={selectedHospital}
           />
           <div>
             <RadioChoice
@@ -32,6 +59,7 @@ const Appointment = () => {
               name={"doctor"}
               value={doctorOption}
               onChange={setdoctorOption}
+              selectedValue={selectedSpecialty}
             />
           </div>
         </div>
@@ -39,24 +67,34 @@ const Appointment = () => {
       <FooterButton
         labelNext={"ต่อไป"}
         labelBack={"เริ่มใหม่"}
-        gotoLocation={"appointmenttime"}
-        backtoLocation="/"
+        gotoLocation={"stay"}
+        backtoLocation=""
+        onNextClick={handleNextClick}
       />
 
-      <Modal show={show} onHide={() => setShow(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShow(false)}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={() => setShow(false)}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      {showSpecialtiesModal && (
+        <PopupModal
+          label={"เลือกความชำนาญแพทย์"}
+          name={"specialties"}
+          itemOption={doctorOption}
+          show={showSpecialtiesModal}
+          onClose={() => setShowSpecialtiesModal(false)}
+          onSelect={setSelectedSpecialty}
+          dataName={"specialties"}
+        />
+      )}
+
+      {showHospitalsModal && (
+        <PopupModal
+          label={"เลือกโรงพยาบาล"}
+          name={"hospitals"}
+          itemOption={hospitalOption}
+          show={showHospitalsModal}
+          onClose={() => setShowHospitalsModal(false)}
+          onSelect={setSelectedHospital}
+          dataName={"hospitals"}
+        />
+      )}
     </>
   );
 };

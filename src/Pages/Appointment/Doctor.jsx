@@ -1,34 +1,45 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { DataContext } from "../../Context/DataContext";
 import DoctorCard from "../../components/AppointmentComponents/DoctorCard";
-
+import DoctorFilter from "../../components/AppointmentComponents/DoctorFilter";
 const Doctor = () => {
-  const { doctors } = useContext(DataContext);
+  const { doctors, specialties, hospitals, loading, error } =
+    useContext(DataContext);
+  const location = useLocation();
+  const { selectedSpecialty, selectedHospital } = location.state || {};
+  const [doctorsFiltered, setDoctorsFiltered] = useState([]);
 
+  useEffect(() => {
+    const list = (doctors || []).filter((doctor) => {
+      const matchesSpecialty = selectedSpecialty
+        ? (doctor.specialty_name || "")
+            .toLowerCase()
+            .includes(selectedSpecialty.toLowerCase())
+        : true;
 
+      const matchesHospital = selectedHospital
+        ? doctor.hospital_name
+          ? doctor.hospital_name === selectedHospital
+          : true
+        : true;
+
+      return matchesSpecialty && matchesHospital;
+    });
+    console.log("Filtered Doctors:", list);
+    setDoctorsFiltered(list);
+  }, [doctors, selectedSpecialty, selectedHospital]);
 
   return (
     <div className="container">
-      <h1 className="text-navy mt-3">ค้นหาเเพทย์</h1>
-      <div className="input-group shadow ">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="ชื่อ, ความชำนาญ, โรงพยาบาล"
-        />
-        <button className="btn bg-navy text-white ">ตัวกรอง</button>
-      </div>
-      <div className="d-flex gap-4">
-        <h3 className="bg-navy text-white rounded fs-6 mt-2 p-2 align-items-center">
-          ชื่อโรงพยาบาล
-        </h3>
-        <h3 className="bg-navy text-white rounded fs-6 mt-2 p-2 align-items-center">
-          ความชำนาญแพทย์
-        </h3>
-      </div>
+      <DoctorFilter
+        selectedHospital={selectedHospital}
+        selectedSpecialty={selectedSpecialty}
+      />
       <div className="d-flex gap-4 flex-wrap justify-content-center">
-        {doctors.map((doctor) => (
-          <DoctorCard key={doctor.id} doctor={doctor} />
+        {(doctors || []).length === 0 && <p>ไม่ข้อมูลพบแพทย์.</p>}
+        {doctorsFiltered.map((doctor) => (
+          <DoctorCard key={doctor.doctor_id} doctor={doctor} />
         ))}
       </div>
     </div>
