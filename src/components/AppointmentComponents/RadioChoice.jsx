@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import { Form } from "react-bootstrap";
 
 const RadioChoice = ({
@@ -10,8 +10,9 @@ const RadioChoice = ({
     { id: "-1", value: "self", label: ` ${label}เอง` },
     { id: "-2", value: "auto", label: "ระบบเลือกให้โดยอัตโนมัติ" },
   ],
-  selectedValue = "",
+  selectedValue = null,
 }) => {
+
   return (
     <div>
       <p className="text-gray fw-bold">{label}</p>
@@ -33,7 +34,9 @@ const RadioChoice = ({
           </Form.Group>
         ))}
       </Form>
-      <p>{selectedValue ? selectedValue : ""}</p>
+      <p className="text-primary fw-bold">
+        {selectedValue ? `คุณเลือก : ${selectedValue}` : ""}
+      </p>
     </div>
   );
 };

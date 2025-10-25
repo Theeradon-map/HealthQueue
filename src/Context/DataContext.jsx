@@ -6,6 +6,7 @@ export const DataProvider = ({ children }) => {
   const [specialties, setSpecialties] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [hospitals, setHospitals] = useState([]);
+  const [doctorsSchedule, setDoctorsSchedule] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -28,157 +29,330 @@ export const DataProvider = ({ children }) => {
 
         const specialtiesData = [
           {
-            specialty_name: "หัวใจ",
-            specialty_id: "1",
+            specialty_name: "โรคหัวใจ",
+            specialty_id: "S001",
           },
           {
-            specialty_name: "มะเร็ง",
-            specialty_id: "2",
+            specialty_name: "มะเร็งวิทยา",
+            specialty_id: "S002",
           },
           {
-            specialty_name: "กระดูก",
-            specialty_id: "3",
+            specialty_name: "ออร์โธปิดิกส์ (กระดูก)",
+            specialty_id: "S003",
           },
           {
-            specialty_name: "สมอง",
-            specialty_id: "4",
+            specialty_name: "ระบบประสาท (สมอง)",
+            specialty_id: "S004",
           },
           {
             specialty_name: "อุบัติเหตุ",
-            specialty_id: "5",
+            specialty_id: "S005",
           },
           {
             specialty_name: "ตรวจสุขภาพ",
-            specialty_id: "6",
+            specialty_id: "S006",
           },
           {
-            specialty_name: "การผ่าตัด",
-            specialty_id: "7",
+            specialty_name: "ศัลยกรรมทั่วไป",
+            specialty_id: "S007",
           },
           {
             specialty_name: "ทันตกรรม",
-            specialty_id: "8",
+            specialty_id: "S008",
           },
           {
-            specialty_name: "สุขภาพหญิง",
-            specialty_id: "9",
-          },
-          {
-            specialty_name: "สุขภาพชาย",
-            specialty_id: "10",
-          },
-          {
-            specialty_name: "สุขภาพเด็ก",
-            specialty_id: "11",
-          },
-          {
-            specialty_name: "แม่และเด็ก",
-            specialty_id: "12",
-          },
-          {
-            specialty_name: "ความงาม",
-            specialty_id: "13",
-          },
-          {
-            specialty_name: "ตา หู คอ จมูก",
-            specialty_id: "14",
+            specialty_name: "สูตินรีเวช",
+            specialty_id: "S009",
           },
           {
             specialty_name: "อายุรกรรม",
-            specialty_id: "15",
+            specialty_id: "S010",
+          },
+          {
+            specialty_name: "กุมารเวชกรรม",
+            specialty_id: "S011",
+          },
+          {
+            specialty_name: "จักษุวิทยา (ตา)",
+            specialty_id: "S012",
+          },
+          {
+            specialty_name: "ความงาม",
+            specialty_id: "S013",
+          },
+          {
+            specialty_name: "โสต ศอ นาสิก (ตา หู คอ จมูก)",
+            specialty_id: "S014",
           },
           {
             specialty_name: "ศูนย์บริการผู้ป่วยชาวต่างชาติ",
-            specialty_id: "16",
+            specialty_id: "S015",
           },
           {
             specialty_name: "กายภาพบำบัด",
-            specialty_id: "17",
+            specialty_id: "S016",
           },
           {
             specialty_name: "ระบบทางเดินอาหาร ตับและถุงน้ำดี",
-            specialty_id: "18",
+            specialty_id: "S017",
           },
           {
             specialty_name: "ดูแลผู้สูงอายุ",
-            specialty_id: "19",
+            specialty_id: "S018",
           },
           {
             specialty_name: "ปอดและระบบทางเดินหายใจ",
-            specialty_id: "20",
+            specialty_id: "S019",
           },
         ];
+
         const doctorsData = [
           {
             doctor_id: "D001",
             doctor_name: "นพ. กิตติพงศ์ วัฒนากุล",
-            specialty_name: "อายุรกรรม",
+            specialty_id: "S010",
+            hospital_id: "H001",
           },
           {
             doctor_id: "D002",
             doctor_name: "พญ. สุทธิดา จันทรสกุล",
-            specialty_name: "กุมารเวชกรรม",
+            specialty_id: "S011",
+            hospital_id: "H002",
           },
           {
             doctor_id: "D003",
             doctor_name: "นพ. ธนากร อัศวะวงศ์",
-            specialty_name: "ศัลยกรรมทั่วไป",
+            specialty_id: "S007",
+            hospital_id: "H003",
           },
           {
             doctor_id: "D004",
             doctor_name: "พญ. ปราณี ภัทรวัฒน์",
-            specialty_name: "สูตินรีเวช",
+            specialty_id: "S009",
+            hospital_id: "H001",
           },
           {
             doctor_id: "D005",
             doctor_name: "นพ. วุฒิชัย พิพัฒน์กุล",
-            specialty_name: "ออร์โธปิดิกส์ (กระดูก)",
+            specialty_id: "S003",
+            hospital_id: "H002",
           },
           {
             doctor_id: "D006",
             doctor_name: "พญ. อมราพร นันทวัฒน์",
-            specialty_name: "โรคหัวใจ",
+            specialty_id: "S001",
+            hospital_id: "H003",
           },
           {
             doctor_id: "D007",
             doctor_name: "นพ. ภูมิภัทร เจนจิระ",
-            specialty_name: "ระบบประสาท (สมอง)",
+            specialty_id: "S004",
+            hospital_id: "H001",
           },
           {
             doctor_id: "D008",
             doctor_name: "พญ. มณฑิรา วีรเศรษฐ์",
-            specialty_name: "ทันตกรรม",
+            specialty_id: "S008",
+            hospital_id: "H002",
           },
           {
             doctor_id: "D009",
             doctor_name: "นพ. ธีรศักดิ์ ชัยเจริญ",
-            specialty_name: "มะเร็งวิทยา",
+            specialty_id: "S002",
+            hospital_id: "H003",
           },
           {
             doctor_id: "D010",
             doctor_name: "พญ. วิมลรัตน์ โชติกานนท์",
-            specialty_name: "จักษุวิทยา (ตา)",
+            specialty_id: "S012",
+            hospital_id: "H001",
           },
         ];
 
         const hospitalsData = [
           {
             hospital_name: "โรงพยาบาลบำรุงราษฎร์",
-            hospital_id: "1",
+            hospital_id: "H001",
           },
           {
             hospital_name: "โรงพยาบาลสมิติเวช",
-            hospital_id: "2",
+            hospital_id: "H002",
           },
           {
             hospital_name: "โรงพยาบาลกรุงเทพ",
-            hospital_id: "3",
+            hospital_id: "H003",
           },
         ];
 
+        const DoctorsScheduleData = [
+          {
+            doctor_id: "D001",
+            schedule: [
+              {
+                day: "เสาร์",
+                date: "25 ต.ค. 68",
+                times: ["09:00-12:00", "13:00-16:00"],
+              },
+              {
+                day: "อาทิตย์",
+                date: "26 ต.ค. 68",
+                times: ["09:00-12:00", "13:00-16:00"],
+              },
+              {
+                day: "จันทร์",
+                date: "27 ต.ค. 68",
+                times: ["08:30-11:30", "13:00-15:30"],
+              },
+              {
+                day: "อังคาร",
+                date: "28 ต.ค. 68",
+                times: ["10:00-12:00", "14:00-17:00"],
+              },
+              { day: "พุธ", date: "29 ต.ค. 68", times: ["09:00-12:00"] },
+            ],
+          },
+          {
+            doctor_id: "D002",
+            schedule: [
+              { day: "เสาร์", date: "25 ต.ค. 68", times: ["10:00-13:00"] },
+              { day: "อาทิตย์", date: "26 ต.ค. 68", times: ["11:00-14:00"] },
+              {
+                day: "จันทร์",
+                date: "27 ต.ค. 68",
+                times: ["09:00-12:00", "13:00-16:00"],
+              },
+              { day: "อังคาร", date: "28 ต.ค. 68", times: ["09:30-12:30"] },
+              { day: "พุธ", date: "29 ต.ค. 68", times: ["13:00-16:00"] },
+            ],
+          },
+          {
+            doctor_id: "D003",
+            schedule: [
+              {
+                day: "เสาร์",
+                date: "25 ต.ค. 68",
+                times: ["08:30-11:30", "13:00-15:30"],
+              },
+              { day: "อาทิตย์", date: "26 ต.ค. 68", times: ["09:00-12:00"] },
+              { day: "จันทร์", date: "27 ต.ค. 68", times: ["10:00-13:00"] },
+              {
+                day: "อังคาร",
+                date: "28 ต.ค. 68",
+                times: ["09:00-12:00", "13:00-16:00"],
+              },
+              { day: "พุธ", date: "29 ต.ค. 68", times: ["11:00-14:00"] },
+            ],
+          },
+          {
+            doctor_id: "D004",
+            schedule: [
+              { day: "เสาร์", date: "25 ต.ค. 68", times: ["09:00-12:00"] },
+              { day: "อาทิตย์", date: "26 ต.ค. 68", times: ["13:00-16:00"] },
+              {
+                day: "จันทร์",
+                date: "27 ต.ค. 68",
+                times: ["09:00-12:00", "13:00-15:00"],
+              },
+              { day: "อังคาร", date: "28 ต.ค. 68", times: ["10:00-12:00"] },
+              { day: "พุธ", date: "29 ต.ค. 68", times: ["09:30-12:30"] },
+            ],
+          },
+          {
+            doctor_id: "D005",
+            schedule: [
+              { day: "เสาร์", date: "25 ต.ค. 68", times: ["11:00-14:00"] },
+              { day: "อาทิตย์", date: "26 ต.ค. 68", times: ["09:00-12:00"] },
+              { day: "จันทร์", date: "27 ต.ค. 68", times: ["08:30-11:30"] },
+              { day: "อังคาร", date: "28 ต.ค. 68", times: ["13:00-16:00"] },
+              { day: "พุธ", date: "29 ต.ค. 68", times: ["10:00-13:00"] },
+            ],
+          },
+          {
+            doctor_id: "D006",
+            schedule: [
+              {
+                day: "เสาร์",
+                date: "25 ต.ค. 68",
+                times: ["10:00-13:00", "14:00-17:00"],
+              },
+              { day: "อาทิตย์", date: "26 ต.ค. 68", times: ["09:00-12:00"] },
+              { day: "จันทร์", date: "27 ต.ค. 68", times: ["09:30-12:30"] },
+              { day: "อังคาร", date: "28 ต.ค. 68", times: ["11:00-14:00"] },
+              { day: "พุธ", date: "29 ต.ค. 68", times: ["09:00-12:00"] },
+            ],
+          },
+          {
+            doctor_id: "D007",
+            schedule: [
+              { day: "เสาร์", date: "25 ต.ค. 68", times: ["09:00-12:00"] },
+              { day: "อาทิตย์", date: "26 ต.ค. 68", times: ["10:00-13:00"] },
+              { day: "จันทร์", date: "27 ต.ค. 68", times: ["13:00-16:00"] },
+              { day: "อังคาร", date: "28 ต.ค. 68", times: ["08:30-11:30"] },
+              {
+                day: "พุธ",
+                date: "29 ต.ค. 68",
+                times: ["09:00-12:00", "13:00-15:30"],
+              },
+            ],
+          },
+          {
+            doctor_id: "D008",
+            schedule: [
+              { day: "เสาร์", date: "25 ต.ค. 68", times: ["11:00-14:00"] },
+              { day: "อาทิตย์", date: "26 ต.ค. 68", times: ["09:00-12:00"] },
+              { day: "จันทร์", date: "27 ต.ค. 68", times: ["10:00-13:00"] },
+              { day: "อังคาร", date: "28 ต.ค. 68", times: ["09:30-12:30"] },
+              { day: "พุธ", date: "29 ต.ค. 68", times: ["13:00-16:00"] },
+            ],
+          },
+          {
+            doctor_id: "D009",
+            schedule: [
+              { day: "เสาร์", date: "25 ต.ค. 68", times: ["08:30-11:30"] },
+              { day: "อาทิตย์", date: "26 ต.ค. 68", times: ["09:00-12:00"] },
+              { day: "จันทร์", date: "27 ต.ค. 68", times: ["11:00-14:00"] },
+              {
+                day: "อังคาร",
+                date: "28 ต.ค. 68",
+                times: ["10:00-12:00", "14:00-17:00"],
+              },
+              { day: "พุธ", date: "29 ต.ค. 68", times: ["09:00-12:00"] },
+            ],
+          },
+          {
+            doctor_id: "D010",
+            schedule: [
+              {
+                day: "เสาร์",
+                date: "25 ต.ค. 68",
+                times: ["09:00-12:00", "13:00-16:00"],
+              },
+              { day: "อาทิตย์", date: "26 ต.ค. 68", times: ["10:00-13:00"] },
+              { day: "จันทร์", date: "27 ต.ค. 68", times: ["09:30-12:30"] },
+              { day: "อังคาร", date: "28 ต.ค. 68", times: ["11:00-14:00"] },
+              { day: "พุธ", date: "29 ต.ค. 68", times: ["13:00-16:00"] },
+            ],
+          },
+        ];
+
+        const formattedDoctorsData = doctorsData.map((doctor) => {
+          const specialty = specialtiesData.find(
+            (spec) => spec.specialty_id === doctor.specialty_id
+          );
+          const hospital = hospitalsData.find(
+            (hosp) => hosp.hospital_id === doctor.hospital_id
+          );
+          return {
+            ...doctor,
+            specialty_name: specialty ? specialty.specialty_name : "",
+            hospital_name: hospital ? hospital.hospital_name : "",
+          };
+        });
+
+        setDoctors(formattedDoctorsData);
         setSpecialties(specialtiesData);
-        setDoctors(doctorsData);
         setHospitals(hospitalsData);
+        setDoctorsSchedule(DoctorsScheduleData);
         setError(null);
       } catch (err) {
         console.warn("Error fetching data:", err.message);
@@ -192,7 +366,16 @@ export const DataProvider = ({ children }) => {
   }, []);
 
   return (
-    <DataContext.Provider value={{ specialties, doctors, hospitals, loading, error }}>
+    <DataContext.Provider
+      value={{
+        specialties,
+        doctors,
+        hospitals,
+        doctorsSchedule,
+        loading,
+        error,
+      }}
+    >
       {children}
     </DataContext.Provider>
   );

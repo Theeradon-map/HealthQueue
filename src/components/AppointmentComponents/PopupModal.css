@@ -1,0 +1,29 @@
+.btn-popupModal-color {
+  color: #002d73;
+  border: #002d73 solid 0.1px;
+  box-shadow: 0 5px 8px 0 #a5c7ff;
+}
+.modalBody {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+.modal-content {
+  padding: 1.25rem;
+  width: fit-content !important;
+}
+.modal-dialog {
+  padding: 10rem;
+  display: flex;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  padding-top: 2rem !important;
+}
+
+[role=dialog] {
+  overflow: clip;
+}
+.btn-popupModal-color:hover {
+  color: #0162ff;
+  border: #0062ff solid 0.1px;
+  box-shadow: 0 5px 8px 0 #dae8ff;
+}
