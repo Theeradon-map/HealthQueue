@@ -9,6 +9,10 @@ const DoctorCard = ({ doctor }) => {
     navigate("/appointmenttime", { state: { doctor } });
   };
 
+  const handleInfo = () => {
+    navigate("/doctorinfo", { state: { doctor } });
+  };
+
   return (
     <div
       className="card mt-2 shadow"
@@ -41,7 +45,11 @@ const DoctorCard = ({ doctor }) => {
             นัดหมาย
           </button>
 
-          <button className="btn btn-lg bg-white text-dark w-50 fs-6">
+          <button
+            className="btn btn-lg bg-white text-dark w-50 fs-6"
+            value={doctor.doctor_id}
+            onClick={handleInfo}
+          >
             รายละเอียด
           </button>
         </div>

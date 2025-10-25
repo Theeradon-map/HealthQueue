@@ -43,7 +43,7 @@ const FooterButton = ({
           <Button
             as={Link}
             to={`/${backtoLocation}`}
-            className="d-flex align-items-center justify-content-center border-0 shadow-sm"
+            className="d-flex align-items-center justify-content-center border-1 border-navy shadow-sm"
             style={{
               width: "125px",
               height: "57px",
