@@ -9,6 +9,8 @@ const FooterButton = ({
   backtoLocation = "",
   onNextClick,
   onBackClick,
+  nextState = null,
+  backState = null,
   disableNext = false,
   disableBack = false,
   labelNext = "",
@@ -43,6 +45,7 @@ const FooterButton = ({
           <Button
             as={Link}
             to={`/${backtoLocation}`}
+            state={backState}
             className="d-flex align-items-center justify-content-center border-1 border-navy shadow-sm"
             style={{
               width: "125px",
@@ -83,6 +86,7 @@ const FooterButton = ({
           <Button
             as={Link}
             to={`/${gotoLocation}`}
+            state={nextState}
             className="d-flex align-items-center justify-content-center border-0 shadow-sm"
             style={{
               width: "125px",

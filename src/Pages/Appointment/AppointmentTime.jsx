@@ -1,16 +1,13 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import Stepper from "../../components/Stepper/Stepper";
-import DatePicker from "react-datepicker";
+import DatePicker from "../../components/Shared/DatePickerTh";
 import "react-datepicker/dist/react-datepicker.css";
-import { registerLocale } from "react-datepicker";
-import th from "date-fns/locale/th";
 import FooterButton from "../../components/AppointmentComponents/FooterButton";
 import AppointmentHeader from "../../components/AppointmentComponents/AppointmentHeader";
 import Schedule from "../../components/AppointmentComponents/Scheudule";
 import { useData } from "../../Context/DataContext";
-registerLocale("th", th);
 
 const AppointmentTime = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -46,7 +43,7 @@ const AppointmentTime = () => {
             <p className="text-navy fs-4">
               {doctor?.doctor_name || "เลือกแพทย์จากหน้าก่อนหน้า"}
             </p>
-            <p className="text-navy fs-4">{doctor?.specialty_name || "..."}</p>
+            <p className="text-navy fs-5">{doctor?.specialty_name || "..."}</p>
             <hr className="m-auto w-50" />
             <div className="text-center mt-2">
               <h5 className="">ทำนัดหมายแพทย์</h5>
@@ -77,6 +74,7 @@ const AppointmentTime = () => {
         labelBack={"กลับ"}
         labelNext={"ต่อไป"}
         gotoLocation={"patientinfo"}
+        nextState={{ doctor: doctor || null, selectedDate, selectedTime }}
         backtoLocation="appointment"
       />
     </>
