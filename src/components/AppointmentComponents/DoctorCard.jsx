@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import SampleDoctor from "../../assets/Doctors/Sample.jpg";
+import SampleDoctor from "../../assets/Doctors/DoctorZ9.png";
+import { FaHospital } from "react-icons/fa6";
+import { FaStar } from "react-icons/fa";
 
 const DoctorCard = ({ doctor }) => {
   const navigate = useNavigate();
@@ -24,15 +26,20 @@ const DoctorCard = ({ doctor }) => {
         alt=""
         style={{
           height: "250px",
-          objectFit: "cover",
+          objectFit: "contain",
           borderTopLeftRadius: "10px",
           borderTopRightRadius: "10px",
         }}
       />
-      <div className="card-doctor text-white p-3">
-        <div className="text-center mb-3">
+      <div className="card-doctor text-white p-3 align-items-center">
+        <div className="text-center mb-3 align-items-center">
           <h5 className="mb-0">{doctor.doctor_name}</h5>
-          <small>{doctor.specialty_name}</small>
+          <FaStar />
+          <small>&nbsp;{doctor.specialty_name}</small>
+          <br />
+          <FaHospital />
+
+          <small>&nbsp;{doctor.hospital_name}</small>
         </div>
 
         <div className="d-flex gap-2 justify-content-center">

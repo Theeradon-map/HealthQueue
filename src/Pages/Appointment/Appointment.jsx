@@ -6,6 +6,8 @@ import FooterButton from "../../components/AppointmentComponents/FooterButton";
 import RadioChoice from "../../components/AppointmentComponents/RadioChoice";
 import Stepper from "../../components/Stepper/Stepper";
 import PopupModal from "../../components/AppointmentComponents/PopupModal";
+import DatePicker from "../../components/Shared/DatePickerTh";
+
 const Appointment = () => {
   const navigate = useNavigate();
   const [hospitalOption, sethospitalOption] = useState(null);
@@ -15,8 +17,8 @@ const Appointment = () => {
   const [selectedSpecialty, setSelectedSpecialty] = useState(null);
   const [selectedHospital, setSelectedHospital] = useState(null);
 
-  const handleNextClick = () => {
-    navigate("/Doctor", {
+  const nextPageClick = () => {
+    navigate("/doctorsearch", {
       state: {
         selectedSpecialty,
         selectedHospital,
@@ -55,6 +57,7 @@ const Appointment = () => {
               if (val === "self") setShowHospitalsModal(true);
             }}
           />
+          <hr />
           <div>
             <RadioChoice
               label={"เลือกแพทย์"}
@@ -74,7 +77,7 @@ const Appointment = () => {
         labelBack={"เริ่มใหม่"}
         gotoLocation={"stay"}
         backtoLocation=""
-        onNextClick={handleNextClick}
+        onNextClick={nextPageClick}
       />
 
       {showSpecialtiesModal && (

@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 
 function NavigateBar() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-navy shadow-lg m-1 rounded h-25">
       <Container>
-        <Navbar.Brand href="#home" className="text-navy fw-bold">
+        <Navbar.Brand href="#home" className="text-white fw-bold">
           <img
             src="./Pond.jpg"
             alt="Logo"
@@ -17,15 +17,15 @@ function NavigateBar() {
           &nbsp; HONGSAWADEE
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse>
           <Nav className="justify-content-end flex-grow-1 pe-3">
-            <Nav.Link as={Link} to="/appointment" className="text-navy">
+            <Nav.Link as={Link} to="/appointment" className="text-white">
               ทำนัด
             </Nav.Link>
-            <Nav.Link as={Link} to="/doctor" className="text-navy">
+            <Nav.Link as={Link} to="/doctorsearch" className="text-white">
               ค้นหาเเพทย์
             </Nav.Link>
-            <Nav.Link as={Link} to="/login" className="text-navy">
+            <Nav.Link as={Link} to="/login" className="text-white">
               เข้าสู่ระบบ
             </Nav.Link>
           </Nav>

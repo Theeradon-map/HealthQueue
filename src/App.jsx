@@ -7,7 +7,7 @@ import NavigateBar from "./components/NavigateBar";
 import Loading from "./components/Loading";
 import AppointmentTime from "./Pages/Appointment/AppointmentTime";
 import Appointment from "./Pages/Appointment/Appointment";
-import Doctor from "./Pages/Appointment/Doctor";
+import DoctorSearch from "./Pages/Appointment/DoctorSearch";
 import PatientInformation from "./Pages/Appointment/PatientInformation";
 import AppointmentInfomation from "./Pages/Appointment/AppointmentInfomation";
 import Doctorinfo from "./Pages/Home/Doctorinfo";
@@ -27,7 +27,7 @@ function AppContent() {
         <Route path="/" element={<Home />} />
         <Route path="/appointmenttime" element={<AppointmentTime />} />
         <Route path="/appointment" element={<Appointment />} />
-        <Route path="/doctor" element={<Doctor />} />
+        <Route path="/doctorSearch" element={<DoctorSearch />} />
         <Route path="/patientinfo" element={<PatientInformation />} />
         <Route path="/appointmentinfo" element={<AppointmentInfomation />} />
         <Route path="/doctorinfo" element={<Doctorinfo />} />

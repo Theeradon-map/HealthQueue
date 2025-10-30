@@ -10,6 +10,10 @@
   scrollbar-width: none;
 }
 
+body {
+  background-color: #ffffffb4 !important;
+}
+
 a:hover {
   text-decoration: none;
   transform: scale(1.05);
@@ -38,7 +42,7 @@ select:hover {
 }
 
 .bg-navy {
-  background-color: #002d73 !important;
+  background-color: #1f2054 !important;
 }
 .text-gray {
   color: #4b4949 !important;
@@ -47,7 +51,7 @@ select:hover {
   background-color: #eeeeee;
 }
 .text-navy {
-  color: #002d73 !important;
+  color: #1f2054 !important;
 }
 .btn-white-1 {
   background-color: white;
@@ -148,7 +152,7 @@ button:hover {
 }
 
 .card-doctor {
-  background: linear-gradient(to bottom right, #002d73, #30639d);
+  background: linear-gradient(to bottom right, #1f2054, #30639d);
 }
 
 .time-button:hover {
@@ -158,5 +162,13 @@ button:hover {
 }
 
 .border-navy {
-  border-color: #002d73 !important;
+  border-color: #1f2054 !important;
+}
+
+.h-fit {
+  height: fit-content;
+}
+
+.w-fit {
+  width: fit-content;
 }
