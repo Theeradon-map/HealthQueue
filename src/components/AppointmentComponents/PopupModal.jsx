@@ -1,6 +1,6 @@
 import { Modal } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./PopupModal.css";
 
 import { DataContext } from "../../Context/DataContext";
@@ -16,10 +16,17 @@ const PopupModal = ({
   const { specialties, hospitals } = useContext(DataContext);
   const [selectedSpecialty, setSelectedSpecialty] = useState(null);
   const [selectedHospital, setSelectedHospital] = useState(null);
+  useEffect(() => {
+    setSelectedSpecialty(itemOption);
+    setSelectedHospital(itemOption);
+  }, [itemOption]);
+  const handleshow = () => {
+    show = true;
+  };
 
   return (
     <>
-      <Modal show={show} onHide={onClose}>
+      <Modal show={show} onHide={onClose} backdrop="static" centered>
         <Modal.Header>
           <Modal.Title className="fs-1 text-navy fw-bold mt-0">
             {label}

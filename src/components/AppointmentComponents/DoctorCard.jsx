@@ -17,7 +17,7 @@ const DoctorCard = ({ doctor }) => {
 
   return (
     <div
-      className="card mt-2 shadow"
+      className="card card-doctor mt-2 shadow"
       key={doctor.doctor_id}
       style={{ width: "280px" }}
     >
@@ -26,12 +26,12 @@ const DoctorCard = ({ doctor }) => {
         alt=""
         style={{
           height: "250px",
-          objectFit: "contain",
+          objectFit: "cover",
           borderTopLeftRadius: "10px",
           borderTopRightRadius: "10px",
         }}
       />
-      <div className="card-doctor text-white p-3 align-items-center">
+      <div className="card-doctor-bottom text-white p-3 align-items-center">
         <div className="text-center mb-3 align-items-center">
           <h5 className="mb-0">{doctor.doctor_name}</h5>
           <FaStar />

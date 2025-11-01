@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Form } from "react-bootstrap";
-import Stepper from "../../components/Stepper/Stepper";
+import Stepper from "../../components/Shared/Stepper/Stepper";
 import DatePicker from "../../components/Shared/DatePickerTh";
 import "react-datepicker/dist/react-datepicker.css";
 import FooterButton from "../../components/AppointmentComponents/FooterButton";
@@ -16,19 +16,11 @@ const AppointmentTime = () => {
   const { doctor } = location.state || {};
   const { doctorsSchedule } = useData();
 
-  useEffect(() => {
-    console.log("Selected Date:", selectedDate);
-  }, [selectedDate]);
-
   const doctorScheduleData = doctorsSchedule.find(
     (schedule) => schedule.doctor_id === doctor?.doctor_id
   );
-  const schedule = doctorScheduleData?.schedule || [];
 
-  useEffect(() => {
-    console.log("Selected Time:", selectedTime);
-    console.log("Picked date:", selectedDate);
-  }, [selectedTime, selectedDate]);
+  const schedule = doctorScheduleData || {};
 
   return (
     <>

@@ -1,10 +1,18 @@
-import React from "react";
+import { useEffect, React } from "react";
 import AppointmentHeader from "../../components/AppointmentComponents/AppointmentHeader";
-import Stepper from "../../components/Stepper/Stepper";
+import Stepper from "../../components/Shared/Stepper/Stepper";
 import FooterButton from "../../components/AppointmentComponents/FooterButton";
 import { Row, Col } from "react-bootstrap";
-
+import DoctorZ9 from "../../assets/Doctors/DoctorZ9.png";
+import { useLocation } from "react-router-dom";
 const AppointmentInfomation = () => {
+  const location = useLocation();
+  const { selectedDate, selectedTime } = location.state || {};
+
+  useEffect(() => {
+    console.log("Selected Date:", selectedDate);
+    console.log("Selected Time:", selectedTime);
+  }, [selectedDate, selectedTime]);
   return (
     <>
       <AppointmentHeader />
@@ -57,8 +65,8 @@ const AppointmentInfomation = () => {
                       }}
                     >
                       <img
-                        src="./public/phdoctor.jpg"
-                        alt="phdoc"
+                        src={DoctorZ9}
+                        alt="นพ. หงสาวดี แซ่ลี"
                         className="rounded-start"
                         style={{
                           width: "100%",

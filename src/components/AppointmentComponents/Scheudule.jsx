@@ -1,92 +1,99 @@
+import React, { use } from "react";
+import dayjs from "dayjs";
+import "dayjs/locale/th";
+import { useNavigate } from "react-router-dom";
+
+dayjs.locale("th");
+
 const Schedule = ({
   schedule,
   selectedDate,
   selectedTime,
   setSelectedTime,
 }) => {
-  const filteredSchedule = (schedule || []).filter((day) => {
-    const monthMap = {
-      "ม.ค.": 0,
-      "ก.พ.": 1,
-      "มี.ค.": 2,
-      "เม.ย.": 3,
-      "พ.ค.": 4,
-      "มิ.ย.": 5,
-      "ก.ค.": 6,
-      "ส.ค.": 7,
-      "ก.ย.": 8,
-      "ต.ค.": 9,
-      "พ.ย.": 10,
-      "ธ.ค.": 11,
-    };
+  const navigate = useNavigate();
+  const selectedClick = () => {
+    navigate("/appointmentinfo", {
+      state: {
+        selectedDate,
+        selectedTime,
+      },
+    });
+    navigate("/patientinfo", {
+      state: {
+        selectedDate,
+        selectedTime,
+      },
+    });
+  };
 
-    const dateParts = day.date.split(" ");
-    if (dateParts.length === 3) {
-      const dayNum = parseInt(dateParts[0]);
-      const month = monthMap[dateParts[1]];
-      const year = parseInt(dateParts[2]) + 2500;
+  const weekDays = Array.from({ length: 5 }, (_, i) =>
+    dayjs(selectedDate).add(i, "day")
+  );
 
-      const scheduleDate = new Date(year - 543, month, dayNum);
-      const pickedDate = selectedDate ? new Date(selectedDate) : new Date();
-      pickedDate.setHours(0, 0, 0, 0);
+  const format = (date) => dayjs(date).format("DD/MM/YYYY");
 
-      return scheduleDate >= pickedDate;
-    }
-    return true;
+  const grouped = weekDays.map((day) => {
+    const dateStart = format(day);
+    const slots = (schedule?.slots || []).filter(
+      (slot) => slot.date === dateStart
+    );
+    return { date: day, slots };
   });
 
   return (
-    <div className="d-flex flex-wrap justify-content-center gap-3 mt-4">
-      {filteredSchedule.length === 0 && <p>ไม่พบเวลาว่างสำหรับนัดหมาย.</p>}
-      {filteredSchedule.slice(0, 5).map((day) => (
-        <div
-          key={day.day}
-          className="d-flex flex-column align-items-center border rounded shadow-sm p-3 bg-white"
-          style={{
-            width: "fit-content",
-            height: "230px",
-            fontSize: "18px",
-          }}
-        >
+    <div className="d-flex gap-3 overflow-auto py-3 justify-content-center">
+      {grouped.length === 0 && (
+        <div className="text-center text-danger mt-5">
+          ไม่พบเวลาว่างสำหรับการนัดหมาย ❌
+        </div>
+      )}
+      {grouped
+        .filter((day) => day.slots.length > 0)
+        .map((day, idx) => (
           <div
-            className="text-white rounded py-1 w-100"
-            style={{ backgroundColor: "#002D73" }}
+            key={idx}
+            className="card card-schedule d-flex flex-column align-items-center bordershadow p-3 bg-white"
+            style={{ minWidth: "140px" }}
           >
-            <div className="fw-bold text-center w-100">{day.day}</div>
             <div
-              className="text-center w-100"
-              style={{ verticalAlign: "middle" }}
+              className="rounded py-2 px-3 text-center w-100 text-white"
+              style={{ backgroundColor: "#002D73" }}
             >
-              {day.date}
+              <div className="fw-bold">{day.date.format("dddd")}</div>
+              <div className="small">{day.date.format("D MMM")}</div>
+            </div>
+
+            <div className="mt-2 w-100">
+              {day.slots.map((slot, i) => {
+                const id = `${slot.date}-${slot.start_time}`;
+                const isSelected = selectedTime === id;
+                const isBooked = slot.status === "booked";
+
+                return (
+                  <div
+                    key={i}
+                    onClick={() =>
+                      !isBooked && setSelectedTime(id) && selectedClick()
+                    }
+                    className={`border rounded text-center py-2 mb-2 small ${
+                      isBooked
+                        ? "bg-danger text-white"
+                        : isSelected
+                        ? "bg-primary text-white"
+                        : "bg-light"
+                    }`}
+                    style={{ cursor: isBooked ? "not-allowed" : "pointer" }}
+                  >
+                    {slot.start_time} - {slot.end_time}
+                  </div>
+                );
+              })}
             </div>
           </div>
-          <div className="mt-2 w-100">
-            {day.times.map((t) => {
-              const uniqueTimeId = `${day.date}-${t}`;
-              return (
-                <div
-                  key={t}
-                  className={`time-button border rounded text-center py-1 my-1 ${
-                    selectedTime === uniqueTimeId
-                      ? "bg-primary text-white"
-                      : "bg-light"
-                  }`}
-                  style={{
-                    cursor: "pointer",
-                    width: "103px",
-                    height: "40px",
-                    fontSize: "15px",
-                  }}
-                  onClick={() => setSelectedTime(uniqueTimeId)}
-                >
-                  {t}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };
+
 export default Schedule;

@@ -3,31 +3,49 @@
   border: #002d73 solid 0.1px;
   box-shadow: 0 5px 8px 0 #a5c7ff;
 }
+
 .modalBody {
   display: grid;
   grid-template-columns: auto auto auto auto;
 }
+
 .modal-content {
   padding: 1.25rem;
-  width: fit-content !important;
+  max-width: 95vw !important;
+  width: auto !important;
 }
+
 .modal-dialog {
-  padding: 10rem;
+  margin: 1.75rem auto;
   display: flex;
-  justify-content: center !important;
-  align-items: flex-start !important;
-  padding-top: 2rem !important;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100% - 3.5rem);
 }
 
 [role="dialog"] {
-  overflow: clip;
+  overflow: visible;
 }
-
-
 
 .modal-backdrop.show {
   opacity: 0.4;
   transition: opacity 0.3s ease-in-out;
+}
+
+/* Ensure the backdrop blocks pointer events and sits below the modal */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1040;
+  pointer-events: auto;
+}
+
+/* Modal should be above the backdrop */
+.modal {
+  z-index: 1050;
 }
 
 .modal.fade .modal-dialog {
