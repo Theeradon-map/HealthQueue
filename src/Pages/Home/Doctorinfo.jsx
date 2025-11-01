@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Form, Container, Row, Col } from "react-bootstrap";
-import Stepper from "../../components/Stepper/Stepper";
+import Stepper from "../../components/Shared/Stepper/Stepper";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
@@ -9,30 +9,24 @@ import th from "date-fns/locale/th";
 import FooterButton from "../../components/AppointmentComponents/FooterButton";
 import AppointmentHeader from "../../components/AppointmentComponents/AppointmentHeader";
 import Schedule from "../../components/AppointmentComponents/Scheudule";
+import DoctorZ9 from "../../assets/Doctors/DoctorZ9.png";
+import { useLocation } from "react-router-dom";
+import { useData } from "../../Context/DataContext";
 
 registerLocale("th", th);
 
 const Doctorinfo = () => {
-  const [selectedTime, setSelectedTime] = useState(new Date());
-  const schedule = [
-    {
-      day: "อาทิตย์",
-      date: "5 ต.ค.",
-      times: ["9.00 - 12.00", "13.00 - 16.00"],
-    },
-    {
-      day: "จันทร์",
-      date: "6 ต.ค.",
-      times: ["10.00 - 12.00", "13.00 - 14.00"],
-    },
-    { day: "อังคาร", date: "7 ต.ค.", times: ["9.00 - 12.00"] },
-    { day: "พุธ", date: "8 ต.ค.", times: ["13.00 - 16.00"] },
-    {
-      day: "พฤหัสบดี",
-      date: "9 ต.ค.",
-      times: ["11.00 - 12.00", "13.00 - 15.00"],
-    },
-  ];
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedTime, setSelectedTime] = useState(null);
+  const location = useLocation();
+  const { doctor } = location.state || {};
+  const { doctorsSchedule } = useData();
+
+  const doctorScheduleData = doctorsSchedule.find(
+    (schedule) => schedule.doctor_id === doctor?.doctor_id
+  );
+
+  const schedule = doctorScheduleData || {};
 
   return (
     <div>
@@ -53,7 +47,7 @@ const Doctorinfo = () => {
           >
             <div>
               <img
-                src="./Pond.jpg"
+                src={DoctorZ9}
                 alt="นพ.หงสาวดี แซ่ลี"
                 className="border rounded-circle border-3 border-white shadow-sm"
                 style={{
@@ -128,19 +122,26 @@ const Doctorinfo = () => {
           </Col>
         </Row>
       </Container>
-     <div>
-  <h3 className="text-navy text-center mt-5" style={{ marginRight: "35%" }}>
-    ตารางเวลาของแพทย์
-  </h3>
-</div>
+      <div>
+        <h3
+          className="text-navy text-center mt-5"
+          style={{ marginRight: "35%" }}
+        >
+          ตารางเวลาของแพทย์
+        </h3>
+      </div>
 
       <div
         className="d-flex justify-content-center mb-5 "
         style={{ marginRight: "11rem" }}
       >
-        {" "}
         <div className="AppointmentBackground">
-          <Schedule schedule={schedule} />
+          <Schedule
+            schedule={schedule}
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+            setSelectedTime={setSelectedTime}
+          />
         </div>
       </div>
     </div>

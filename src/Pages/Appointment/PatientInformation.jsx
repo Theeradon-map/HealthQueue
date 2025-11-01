@@ -1,9 +1,18 @@
 import { Form } from "react-bootstrap";
 import FooterButton from "../../components/AppointmentComponents/FooterButton";
 import AppointmentHeader from "../../components/AppointmentComponents/AppointmentHeader";
-import Stepper from "../../components/Stepper/Stepper";
-import { useState } from "react";
+import Stepper from "../../components/Shared/Stepper/Stepper";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
 const PatientInformation = () => {
+  const location = useLocation();
+  const { selectedDate, selectedTime } = location.state || {};
+  useEffect(() => {
+    console.log("Selected Date:", selectedDate);
+    console.log("Selected Time:", selectedTime);
+  }, [selectedDate, selectedTime]);
+
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const formatPhoneNumber = (value) => {

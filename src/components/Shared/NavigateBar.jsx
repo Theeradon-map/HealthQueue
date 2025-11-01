@@ -8,7 +8,7 @@ function NavigateBar() {
   return (
     <Navbar expand="lg" className="bg-navy shadow-lg m-1 rounded h-25">
       <Container>
-        <Navbar.Brand href="#home" className="text-white fw-bold">
+        <Navbar.Brand as={Link} to="/" className="text-white fw-bold">
           <img
             src="./Pond.jpg"
             alt="Logo"

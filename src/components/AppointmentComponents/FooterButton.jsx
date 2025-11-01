@@ -79,8 +79,8 @@ const FooterButton = ({
             onClick={onNextClick}
             disabled={disableNext}
           >
+            {labelNext} 
             <i className="bi bi-chevron-right" />
-            {labelNext}
           </Button>
         ) : (
           <Button
@@ -99,8 +99,8 @@ const FooterButton = ({
               gap: "10px",
             }}
           >
-            <i className="bi bi-chevron-right" />
             {labelNext}
+            <i className="bi bi-chevron-right" />
           </Button>
         )}
       </div>

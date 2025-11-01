@@ -4,7 +4,7 @@ import { DataContext } from "../../Context/DataContext";
 import AppointmentHeader from "../../components/AppointmentComponents/AppointmentHeader";
 import FooterButton from "../../components/AppointmentComponents/FooterButton";
 import RadioChoice from "../../components/AppointmentComponents/RadioChoice";
-import Stepper from "../../components/Stepper/Stepper";
+import Stepper from "../../components/Shared/Stepper/Stepper";
 import PopupModal from "../../components/AppointmentComponents/PopupModal";
 import DatePicker from "../../components/Shared/DatePickerTh";
 
